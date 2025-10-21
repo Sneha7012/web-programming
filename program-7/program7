@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>background color</title>
+<style>
+body{
+ text-align:center;
+ background-color:powderblue;
+ margin-top:100px;
+}
+button{
+width:100px;
+height:60px;
+}
+</style>
+</head>
+<body>
+
+<button onclick="background()">click me</button>
+<script>
+function background()
+{
+var r=Math.floor(Math.random()*256);
+var b=Math.floor(Math.random()*256);
+var g=Math.floor(Math.random()*256);
+
+document.body.style.backgroundColor="rgb("+r+","+g+","+b+")";
+}
+</script>
+<h2>To change background</h2>
+</body>
+</html>
