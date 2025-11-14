@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration</title>
+<style>
+body {
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 230px;
+}
+
+form {
+  background-color: #111;
+  color: white;
+  width: 420px;
+  padding: 15px;
+
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.25);
+}
+
+h2 {
+  color: #0f0;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  letter-spacing: 1px;
+}
+
+fieldset {
+  border: 1px solid #0f0;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+
+
+label {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+input[type=text],
+input[type=tel],
+input[type=email],
+input[type=password],
+select {
+  width: 95%;
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: white;
+  font-size: 15px;
+}
+
+input[type=text]:focus,
+input[type=tel]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+select:focus {
+  border-color: #0f0;
+  outline: none;
+  box-shadow: 0 0 5px #0f0;
+}
+
+input[type=submit],
+input[type=reset] {
+  background-color: #0a0;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  margin: 10px 5px;
+  cursor: pointer;
+  width: 48%;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input[type=submit]:hover,
+input[type=reset]:hover {
+  background-color: #0c0;
+  transition: 0.3s;
+}
+
+#errorMsg {
+  color: #ff3333;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+</style>
+</head>
+<body>
+
+
+
+<form name="regform" onsubmit="return formValidate()">
+<h2><center>Registration Form</center></h2>
+<fieldset>
+  <legend>User Information</legend>
+
+  <label for="name">Name:</label>
+  <select id="mr" name="mr" required>
+    <option value="Mr.">Mr.</option>
+    <option value="Ms.">Ms.</option>
+  </select>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="phone">Phone:</label>
+  <input type="tel" id="phone" name="phone" required><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required><br><br>
+
+  <label for="psw">Password:</label>
+  <input type="password" id="psw" name="psw" required><br><br>
+
+  <label for="confirmPsw">Confirm Password:</label>
+  <input type="password" id="confirmPsw" name="confirmPsw" required><br><br>
+</fieldset>
+
+<div id="errorMsg"></div><br>
+
+<input type="submit" name="submit" id="submit" value="Register">
+
+</form>
+
+<script>
+function formValidate() {
+  var name = document.getElementById("name").value.trim();
+  var phone = document.getElementById("phone").value.trim();
+  var email = document.getElementById("email").value.trim();
+  var password = document.getElementById("psw").value;
+  var confirmPassword = document.getElementById("confirmPsw").value;
+  var errorMsg = document.getElementById("errorMsg");
+
+  errorMsg.textContent = ""; // Clear previous messages
+
+  var nameval = /^[a-zA-Z\s]+$/;
+  var phoneval = /^\d{10}$/;
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!nameval.test(name)) {
+    alert("Name must contain only letters and spaces (A–Z, a–z).");
+    return false;
+  }
+
+  if (!phoneval.test(phone)) {
+    alert("Phone number must contain exactly 10 digits.");
+    return false;
+  }
+
+  if (!emailPattern.test(email)) {
+    alert("Please enter a valid email address.");
+    return false;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return false;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match. Please re-enter.");
+    return false;
+  }
+
+  alert("Form submitted successfully!");
+  return true;
+}
+</script>
+
+</body>
+</html>
+
